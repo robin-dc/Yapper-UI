@@ -76,6 +76,10 @@
     body {
       @apply bg-background text-foreground;
     }
+    input, textarea{
+      /* outline: none !important; */
+      @apply focus-visible:ring-transparent outline-none;
+    }
   }
   .gradient {
     background: radial-gradient(

@@ -101,11 +101,11 @@ const Login = () => {
           before:content-[''] before:h-[1.7px] before:w-[43%] before:bg-customBorder before:absolute before:left-0 before:top-[50%]
           after:content-[''] after:h-[1.7px] after:w-[43%] after:bg-customBorder after:absolute after:right-0 after:top-[50%]">or</p>
 
-              <div className="border border-customBorder rounded-lg p-[1.5rem] mt-[0.6rem] flex justify-between items-center gap-[1rem] hover:cursor-pointer">
+              <Link to="/" className="border border-customBorder rounded-lg p-[1.5rem] mt-[0.6rem] flex justify-between items-center gap-[1rem] hover:cursor-pointer">
                 <img src="/google_logo.png" className="w-[2.7rem]" alt="" />
                 <h3 className="text-white font-normal text-[0.97rem]">Continue with Google <span className="hidden md:inline text-white">Account</span></h3>
                 <GrNext className="text-[1rem]"/>
-              </div>
+              </Link>
 
           </div>
       </div>
