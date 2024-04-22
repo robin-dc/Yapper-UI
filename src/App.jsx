@@ -3,7 +3,7 @@ import { Home, Login, Register, UserProfile, Me } from "./pages"
 
 function App() {
   return (
-    <div className="bg-primary">
+    <div className="bg-primary min-h-screen">
       <Routes>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
