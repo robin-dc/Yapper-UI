@@ -4,23 +4,23 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { PersonCard } from ".."
+import { UserCard } from ".."
 
 const FriendsList = () => {
   return (
-    <Card className="bg-primary border-customGray flex gap-[1rem] p-[1rem]">
+    <Card className="bg-primary border-none flex gap-[1rem] p-[1rem]">
     <div className="w-full">
         <CardHeader className="p-0 mb-[1rem]">
-            <CardTitle className="text-[1.2rem] text-white ">Peers</CardTitle>
+            <CardTitle className="text-[1.2rem] text-white ">Moots</CardTitle>
         </CardHeader>
         <CardContent className="p-0">
-            <PersonCard/>
-            <PersonCard/>
-            <PersonCard/>
-            <PersonCard/>
-            <PersonCard/>
-            <PersonCard/>
-            <PersonCard/>
+            <UserCard/>
+            <UserCard/>
+            <UserCard/>
+            <UserCard/>
+            <UserCard/>
+            <UserCard/>
+            <UserCard/>
         </CardContent>
     </div>
 </Card>

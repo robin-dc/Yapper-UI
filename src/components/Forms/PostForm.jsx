@@ -73,7 +73,7 @@ const PostForm = () => {
             {postImages.length == 0 ? (
               <>
                 <TiUpload className="text-[3rem]"/>
-                <p>Drop some files here</p>
+                <p>Add some files here</p>
               </>
             ) : postImages.map((img, index) => <p className="text-[0.9rem] inline" key={index}>{img}</p>)}
           </div>

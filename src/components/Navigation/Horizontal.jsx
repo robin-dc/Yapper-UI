@@ -28,7 +28,7 @@ const Horizontal = () => {
                   <DropdownMenuContent className="bg-primary border-customBorder mt-2 w-[200px]">
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator className="bg-customBorder"/>
-                    <DropdownMenuItem>Profile</DropdownMenuItem>
+                    <DropdownMenuItem><Link to="/me">Profile</Link></DropdownMenuItem>
                     <DropdownMenuItem>Settings</DropdownMenuItem>
                     <DropdownMenuItem>Help</DropdownMenuItem>
                     <DropdownMenuSeparator className="bg-customBorder"/>

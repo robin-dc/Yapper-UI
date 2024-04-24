@@ -29,7 +29,7 @@ import {
 } from "@/components/ui/alert-dialog"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { PostActions } from "..";
+import { Comments, Likes, PostActions, ProfileTooltip } from "..";
 
 const PostCard = () => {
   return (
@@ -38,10 +38,12 @@ const PostCard = () => {
       <div className="flex gap-[1rem] h-full">
 
         <div className="flex flex-col items-center gap-[1rem] pb-[1rem]">
-          <Avatar>
-              <AvatarImage src="https://i.pinimg.com/originals/42/36/57/4236575a78f9e6fa55a1f94f83af578b.jpg" />
-              <AvatarFallback>YP</AvatarFallback>
-          </Avatar>
+          <ProfileTooltip>
+            <Avatar>
+                <AvatarImage src="https://i.pinimg.com/originals/42/36/57/4236575a78f9e6fa55a1f94f83af578b.jpg" />
+                <AvatarFallback>YP</AvatarFallback>
+            </Avatar>
+          </ProfileTooltip>
           <span className="w-[2px] h-[100%] bg-customGray"></span>
         </div>
 
@@ -88,9 +90,11 @@ const PostCard = () => {
             <AvatarFallback>YP</AvatarFallback>
         </Avatar>
         <div className="flex gap-[10px] items-center">
-          <small>1 reply</small>
+          <Comments>
+            <small>1 reply</small>
+          </Comments>
           <span className="text-[0.5rem]">&#8226;</span>
-          <small>168 likes</small>
+          <Likes/>
         </div>
       </CardFooter>
 
@@ -102,7 +106,7 @@ const PostCard = () => {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel lassName="bg-white text-primary hover:bg-customGray hover:text-white border-none">Cancel</AlertDialogCancel>
+          <AlertDialogCancel className="bg-white text-primary hover:bg-customGray hover:text-white border-none">Cancel</AlertDialogCancel>
           <AlertDialogAction className="border-2 border-customGray">Continue</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
