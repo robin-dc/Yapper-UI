@@ -21,23 +21,23 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 const Activity = () => {
   return (
     <Sheet>
-        <SheetTrigger asChild className="flex items-center gap-[1rem] p-[1rem] rounded-md hover:bg-customGray">
-            <Button className="w-full flex justify-start">
+        <SheetTrigger asChild className="py-[1.7rem] hover:bg-customGray">
+            <Button className="w-full flex justify-start gap-[1rem]">
                 <GoHeart className="text-[1.2rem]"/>
                 <span>Activity</span>
             </Button>
         </SheetTrigger>
 
-        <SheetContent side="left"  className="bg-primary border-customGray flex flex-col">
-            <SheetHeader>
+        <SheetContent side="left"  className="bg-primary border-customGray flex flex-col p-[2px]">
+            <SheetHeader className="p-[1.3rem] pb-0">
                 <SheetTitle className="text-white gradient text-[1.3rem]">Notifications</SheetTitle>
                 <SheetDescription className="text-lightGray">
                     You have 3 unread notifications.
                 </SheetDescription>
             </SheetHeader>
 
-            <ScrollArea className="w-full">
-                <div className="py-[1rem] w-full h-full">
+            <ScrollArea className="w-full px-[2rem]">
+                <div className="w-full h-full">
                     <NotificationCard/>
                     <NotificationCard/>
                     <NotificationCard/>
@@ -50,8 +50,8 @@ const Activity = () => {
                     <NotificationCard/>
                 </div>
             </ScrollArea>
-            <SheetFooter className="w-full bg-primary z-10">
-                <Button className="w-full bg-white flex gap-[5px] opacity-100 hover:bg-customGray hover:text-white">
+            <SheetFooter className="w-full border-none z-10 p-[1.3rem] pt-0">
+                <Button className="w-full bg-white focus:outline-none flex gap-[5px] opacity-100 hover:bg-customGray hover:text-white">
                     <FaCheck className="text-primary"/>
                     <span>Mark all as read</span>
                 </Button>
