@@ -10,16 +10,16 @@ import {
 } from "@/components/ui/card"
 import { Button } from "../ui/button";
 
-const ProfileCard = () => {
-  return (
+const ProfileCard = ({user}) => {
 
+  return (
     <Card className="bg-primary flex flex-col border-none">
       <CardHeader className="p-0 m-0 w-full">
         <div className="flex items-center gap-[1rem] w-full justify-between">
           <div>
-            <CardTitle className="text-[1.7rem] text-white">Robin Dela Cruz</CardTitle>
+            <CardTitle className="text-[1.7rem] text-white">{user?.firstName} {user?.lastName}</CardTitle>
             <CardDescription className="text-lightGray">
-              <p className="inline">@rrra_wrrr</p>
+              <p className="inline">@{user?.userName}</p>
               <small className="px-[8px] py-[5px] bg-customGray rounded-full ml-[5px]">yapper.net</small>
             </CardDescription>
           </div>

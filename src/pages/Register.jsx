@@ -15,24 +15,35 @@ import {
 import { Input } from "../components/ui/input"
 
 // React Router Imports
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+
+import Api from "@/common/api"
 
 
 const formSchema = z.object({
-  username: z.string().min(8, {
-    message: "Username must be at least 8 characters.",
-  }),
-  password: z.string().min(2, {
+  firstName: z.string().min(1),
+  lastName: z.string().min(1),
+  userName: z.string().min(1),
+  email: z.string().email(),
+  password: z.string().min(8, {
     message: "Password must be at least 8 characters.",
   }),
-})
+  confirmpass: z.string()
+}).refine((data) => data.password === data.confirmpass, {
+  message: "Passwords don't match",
+  path: ["confirmpass"], // path of error
+});
 
 const Register = () => {
-
+    const navigate = useNavigate()
     const form = useForm({resolver: zodResolver(formSchema),
       defaultValues: {
-        username: "",
+        firstName: "",
+        lastName: "",
+        userName: "",
+        email: "",
         password: "",
+        confirmpass: "",
       },
     })
     const {
@@ -40,9 +51,13 @@ const Register = () => {
         control
     } = form
 
-    function onSubmit(values) {
-
-      console.log(values)
+    const onSubmit = async(values) =>  {
+      const response = await Api.register(values)
+      console.log(response)
+      if(response){
+        form.reset()
+        navigate('/login')
+      }
     }
 
     return (
@@ -53,20 +68,37 @@ const Register = () => {
           <h1 className="text-[2rem] mb-[1.8rem] text-lightGray">Join <span className="gradient font-semibold">Yapper</span> Today</h1>
           <Form {...form}>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
-              <FormField
-                control={control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Input
-                        placeholder="Name" {...field}
-                        className="bg-customGray focus:border-transparent focus:outline-none border-none rounded-lg placeholder:text-lightGray p-[1.6rem]" style={{outline:"none", borderColor: "transparent"}}/>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              <div className="flex space-x-2">
+                <FormField
+                  control={control}
+                  name="firstName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input
+                          placeholder="Firstname" {...field}
+                          className="bg-customGray focus:border-transparent focus:outline-none border-none rounded-lg placeholder:text-lightGray p-[1.6rem]" style={{outline:"none", borderColor: "transparent"}}/>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={control}
+                  name="lastName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input
+                          placeholder="Lastname" {...field}
+                          className="bg-customGray focus:border-transparent focus:outline-none border-none rounded-lg placeholder:text-lightGray p-[1.6rem]" style={{outline:"none", borderColor: "transparent"}}/>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
               <FormField
                 control={control}
                 name="userName"

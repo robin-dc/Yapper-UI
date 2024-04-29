@@ -15,25 +15,25 @@ import {
 import { Input } from "../components/ui/input"
 
 // React Router Imports
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 // React Icons
 import { GrNext } from "react-icons/gr";
 
+import Api from "@/common/api"
+
 const formSchema = z.object({
-  username: z.string().min(8, {
-    message: "Username must be at least 8 characters.",
-  }),
-  password: z.string().min(2, {
+  email: z.string().email(),
+  password: z.string().min(8, {
     message: "Password must be at least 8 characters.",
   }),
 })
 
 const Login = () => {
-
+    const navigate = useNavigate()
     const form = useForm({resolver: zodResolver(formSchema),
       defaultValues: {
-        username: "",
+        email: "",
         password: "",
       },
     })
@@ -42,9 +42,14 @@ const Login = () => {
         control
     } = form
 
-    function onSubmit(values) {
-
-      console.log(values)
+    const onSubmit = async (values) => {
+      const response = await Api.login(values)
+      console.log(response)
+      if(response){
+        localStorage.setItem("token", JSON.stringify(response?.token))
+        form.reset()
+        navigate('/')
+      }
     }
 
     return (
@@ -57,12 +62,12 @@ const Login = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
               <FormField
                 control={control}
-                name="username"
+                name="email"
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
                       <Input
-                        placeholder="Username, phone, email" {...field}
+                        placeholder="Email address" {...field}
                         className="bg-customGray border-none rounded-lg placeholder:text-lightGray p-[1.6rem]"/>
                     </FormControl>
                     <FormMessage />

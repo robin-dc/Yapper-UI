@@ -132,9 +132,10 @@ class Api{
     }
 
     // @desc Register a new user
-    async register({body}){
+    async register(body){
+        console.log("body in API:", body)
         try {
-            const response = await axios.post(`/api/auth/register`, {...body})
+            const response = await axios.post(`/api/auth/register`, body)
             return response.data
         } catch (error) {
             console.log(error.message)
@@ -142,9 +143,10 @@ class Api{
     }
 
     // @desc Login a user
-    async login({body}){
+    async login(body){
+        console.log(body)
         try {
-            const response = await axios.post(`/api/auth`, {...body})
+            const response = await axios.post(`/api/auth/login`, body)
             return response.data
         } catch (error) {
             console.log(error.message)
@@ -154,7 +156,12 @@ class Api{
     // @desc Get the info of current logged user
     async getMe(){
         try {
-            const response = await axios.get(`/api/auth/me`)
+            const token = JSON.parse(localStorage.getItem('token'))
+            const response = await axios.get(`/api/auth/me`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
             return response.data
         } catch (error) {
             console.log(error.message)

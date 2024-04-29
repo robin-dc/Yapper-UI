@@ -5,7 +5,23 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { useEffect, useState } from "react"
+
+
+import Api from "@/common/api"
+
 const Me = () => {
+  const [currentUser, setCurrentUser] = useState("")
+
+  const getMe = async () => {
+    const response = await Api.getMe()
+    console.log(response)
+    setCurrentUser(response)
+  }
+  useEffect(() => {
+    getMe()
+  }, [])
+
   return (
     <div>
       <Horizontal/>
@@ -18,7 +34,7 @@ const Me = () => {
         <ResizablePanel defaultSize={83} className="min-w-[500px] h-screen">
           <div className="pt-[5rem] h-full">
             <ScrollArea className="h-full w-full rounded-md py-[2rem] px-[13rem]">
-              <ProfileCard/>
+              <ProfileCard user={currentUser}/>
               <ProfileTabs/>
             </ScrollArea>
           </div>
